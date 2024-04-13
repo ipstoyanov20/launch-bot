@@ -99,9 +99,9 @@ app.get("/api", async (req, res) => {
 	await browser.close();
 } catch (error) {
 	console.log(error);
+	return null;
 }
 
-	res.send("Success");
 });
 
 module.exports = app;
