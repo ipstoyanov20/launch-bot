@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "dev": "node index.js",
     "build": "node index.js"
@@ -14,6 +14,8 @@
     "puppeteer": "^21.3.8"
   },
   "dependencies": {
+    "puppeteer-core": "^6",
+    "chrome-aws-lambda": "^6",
     "dotenv": "^16.3.1"
   }
 }

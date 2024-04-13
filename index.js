@@ -1,13 +1,39 @@
-import puppeteer from "puppeteer";
-import { config } from "dotenv";
-config();
+const env = require("dotenv");
+env.config();
+
+let chrome = {};
+let puppeteer;
+
+if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
+	const chromeLambda = require("chrome-aws-lambda");
+	chrome = chromeLambda;
+	const puppeteerCore = require("puppeteer-core");
+	puppeteer = puppeteerCore;
+} else {
+  const puppeteerModule = require("puppeteer");
+  puppeteer = puppeteerModule;
+}
 
 (async () => {
-	const browser = await puppeteer.launch({
-		headless: false,
-		defaultViewport: null,
-		args: ["--start-maximized"],
-	});
+
+	let options = {};
+
+  if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
+    options = {
+      args: [...chrome.args, "--hide-scrollbars", "--disable-web-security"],
+      defaultViewport: chrome.defaultViewport,
+      executablePath: await chrome.executablePath,
+      headless: true,
+      ignoreHTTPSErrors: true,
+    };
+  } else {
+		options = {
+			headless: false,
+			defaultViewport: null,
+			args: ["--start-maximized"],
+		};
+	}
+	const browser = await puppeteer.launch(options);
 	const page = await browser.newPage();
 
 	// Navigate to the page that will perform the tests.
