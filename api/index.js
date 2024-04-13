@@ -94,6 +94,8 @@ app.get("/api", async (req, res) => {
 		const reserve = await page.$("input.btn.btn-primary");
 		await reserve.click();
 	}
+
+	console.log("Lekooo");
 	await browser.close();
 } catch (error) {
 	console.log(error);
