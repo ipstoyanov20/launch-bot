@@ -95,7 +95,7 @@ app.get("/api", async (req, res) => {
 		await reserve.click();
 	}
 
-	console.log("Lekooo");
+	res.send("I Am in");
 	await browser.close();
 } catch (error) {
 	console.log(error);
