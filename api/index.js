@@ -14,7 +14,7 @@ if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
   puppeteer = puppeteerModule;
 }
 
-module.exports = async (req, res) => {
+(async () => {
 
 	let options = {};
 
@@ -90,4 +90,4 @@ module.exports = async (req, res) => {
 		await reserve.click();
 	}
 	await browser.close();
-};
+})();
