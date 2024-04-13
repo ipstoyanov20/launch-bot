@@ -19,18 +19,16 @@ if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
 app.get("/api", async (req, res) => {
 
 
-	try {
-
 	let options = {};
 
   if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
-    options = {
-      args: [...chrome.args, "--hide-scrollbars", "--disable-web-security"],
-      defaultViewport: chrome.defaultViewport,
-      executablePath: await chrome.executablePath,
-      headless: true,
-      ignoreHTTPSErrors: true,
-    };
+	options = {
+	  args: [...chrome.args, "--hide-scrollbars", "--disable-web-security"],
+	  defaultViewport: chrome.defaultViewport,
+	  executablePath: await chrome.executablePath,
+	  headless: true,
+	  ignoreHTTPSErrors: true,
+	};
   } else {
 		options = {
 			headless: false,
@@ -38,6 +36,8 @@ app.get("/api", async (req, res) => {
 			args: ["--start-maximized"],
 		};
 	}
+	try {
+
 	const browser = await puppeteer.launch(options);
 	const page = await browser.newPage();
 
