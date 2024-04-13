@@ -1,5 +1,7 @@
 const env = require("dotenv");
 env.config();
+const app = require("express")();
+
 
 let chrome = {};
 let puppeteer;
@@ -14,7 +16,7 @@ if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
   puppeteer = puppeteerModule;
 }
 
-(async () => {
+app.get("/api", async (req, res) => {
 
 	let options = {};
 
@@ -90,4 +92,6 @@ if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
 		await reserve.click();
 	}
 	await browser.close();
-})();
+});
+
+module.exports = app;
