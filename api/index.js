@@ -18,6 +18,9 @@ if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
 
 app.get("/api", async (req, res) => {
 
+
+	try {
+
 	let options = {};
 
   if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
@@ -92,6 +95,11 @@ app.get("/api", async (req, res) => {
 		await reserve.click();
 	}
 	await browser.close();
+} catch (error) {
+	console.log(error);
+}
+
+	res.send("Success");
 });
 
 module.exports = app;
