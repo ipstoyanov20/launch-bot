@@ -1,7 +1,7 @@
 {
     "functions": {
       "api/index.js": {
-        "runtime": "@vercel/node"
+        "runtime": "@vercel/node@canary"
       }
     },
     "routes": [{ "src": "/(.*)", "dest": "/api/index.js" }]
