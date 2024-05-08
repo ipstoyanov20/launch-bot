@@ -32,7 +32,6 @@ const redirectIfWednesday1505 = (req, res, next) => {
       hasRedirected = true; 
     } else {
       console.log("Not redirecting...");
-      res.redirect("/scrape");
       // next();
     }
   };
