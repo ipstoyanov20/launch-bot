@@ -1,6 +1,12 @@
 # Use an image that includes a VNC server and a desktop environment
 FROM dorowu/ubuntu-desktop-lxde-vnc
 
+# Install curl and software-properties-common
+RUN apt-get update && apt-get install -y curl software-properties-common
+
+# Install Node.js and npm
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
+RUN apt-get install -y nodejs
 
 # Set environment variables for Puppeteer
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
@@ -13,7 +19,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm ci
+RUN npm install
 
 # Copy the rest of the application
 COPY . .
