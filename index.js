@@ -20,7 +20,7 @@ const redirectIfWednesday1505 = (req, res, next) => {
     if (
       now.getDay() === 3 && // 3 corresponds to Wednesday
       now.getHours() === 15 &&
-      now.getMinutes() >= 0 && now.getMinutes() <= 40 &&
+      now.getMinutes() >= 0 && now.getMinutes() <= 50 &&
       !hasRedirected
     ) {
       // Log a message
