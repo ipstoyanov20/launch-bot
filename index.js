@@ -29,10 +29,11 @@ const redirectIfWednesday1505 = (req, res, next) => {
 
       // Redirect to "/scrape"
       res.redirect("/scrape");
+      // res.send(`Here we are:`);
+
       hasRedirected = true; 
-    } else {
-      next();
     }
+    next();
   };
 
   // Check every minute
@@ -40,7 +41,7 @@ const redirectIfWednesday1505 = (req, res, next) => {
 };
 
 // Apply the middleware to all routes
-app.use(redirectIfWednesday1505);
+// app.use(redirectIfWednesday1505);
 
 
 
