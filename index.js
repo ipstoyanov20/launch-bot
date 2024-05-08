@@ -4,10 +4,17 @@ config();
 
 (async () => {
 	const browser = await puppeteer.launch({
-		headless: false,
+		executablePath:
+		process.env.NODE_ENV === "production"
+		  ? process.env.PUPPETEER_EXECUTABLE_PATH
+		  : puppeteer.executablePath(),		headless: false,
 		defaultViewport: null,
-		args: ["--start-maximized"],
-	});
+		args: [
+			"--disable-setuid-sandbox",
+			"--no-sandbox",
+			"--single-process",
+			"--no-zygote",
+		  ],	});
 	const page = await browser.newPage();
 
 	// Navigate to the page that will perform the tests.
