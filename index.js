@@ -36,7 +36,7 @@ const redirectIfWednesday1505 = (req, res, next) => {
   };
 
   // Check every minute
-  setInterval(checkTime, 60000);
+  setInterval(checkTime, 5000);
 };
 
 // Apply the middleware to all routes
