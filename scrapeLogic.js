@@ -12,7 +12,7 @@ const scrapeLogic = async (res) => {
       "--single-process",
       "--no-zygote",
     ],
-    // headless: false,
+    headless: "new",
     executablePath:
       process.env.NODE_ENV === "production"
         ? process.env.PUPPETEER_EXECUTABLE_PATH
@@ -72,7 +72,6 @@ const scrapeLogic = async (res) => {
       const reserve = await page.$("input.btn.btn-primary");
       await reserve.click();
     }
-    await browser.close();
     res.send(`Here we are:`);
   } catch (e) {
     console.error(e);
