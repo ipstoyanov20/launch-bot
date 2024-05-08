@@ -12,7 +12,7 @@ const redirectIfWednesday1505 = (req, res, next) => {
     const now = new Date();
 
     // Log the current time in Bulgarian time zone
-    console.log("Current time in Bulgarian time zone:", now.toLocaleString("en-US", {timeZone: "Europe/Sofia"}));
+    // console.log("Current time in Bulgarian time zone:", now.toLocaleString("en-US", {timeZone: "Europe/Sofia"}));
     
     // Create a new date object adjusted to Bulgarian time
     const nowInBulgarianTime = new Date(now.toLocaleString("en-US", {timeZone: "Europe/Sofia"}));
@@ -31,15 +31,12 @@ const redirectIfWednesday1505 = (req, res, next) => {
       res.redirect("/scrape");
       hasRedirected = true; 
     } else {
-      console.log("Not redirecting...");
-      // next();
+      next();
     }
   };
 
   // Check every minute
   setInterval(checkTime, 60000);
-
-  // Continue to the next middleware
 };
 
 // Apply the middleware to all routes
