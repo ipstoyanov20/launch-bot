@@ -3,6 +3,7 @@ import {config} from "dotenv"
 config();
 
 const scrapeLogic = async (res) => {
+  (async () => {
   const browser = await puppeteer.launch({
     executablePath:
 		process.env.NODE_ENV === "production"
@@ -11,10 +12,7 @@ const scrapeLogic = async (res) => {
     headless: false,
 		defaultViewport: null,
 		args: [
-      "--disable-setuid-sandbox",
 			"--no-sandbox",
-			"--single-process",
-			"--no-zygote",
     ],	});
     try{
 	const page = await browser.newPage();
@@ -78,5 +76,6 @@ const scrapeLogic = async (res) => {
   } finally {
     await browser.close();
   }
-};
+})();
+}
 export {scrapeLogic};
