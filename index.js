@@ -11,7 +11,7 @@ const redirectIfWednesday1505 = (req, res, next) => {
   const checkTime = () => {
     const now = new Date();
     // Convert to Bulgarian time
-    now.setHours(now.getHours()); // Bulgaria is GMT+3
+    now.setHours(now.getHours() + 3); // Bulgaria is GMT+3
   
     // Log the current time in Bulgarian time zone
     console.log("Current time in Bulgarian time zone:", now.toLocaleString("bg-BG"));
@@ -19,8 +19,8 @@ const redirectIfWednesday1505 = (req, res, next) => {
     // Check if it's Wednesday and the time is between 15:00 and 15:14
     if (
       now.getDay() === 3 && // 3 corresponds to Wednesday
-      now.getHours() === 15 &&
-      now.getMinutes() >= 0 && now.getMinutes() <= 50 &&
+      now.getHours() >= 15 && now.getHours() <= 17 &&
+      now.getMinutes() >= 0 &&
       !hasRedirected
     ) {
       // Log a message
