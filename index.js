@@ -37,7 +37,7 @@ const redirectIfWednesday1505 = (req, res, next) => {
   };
 
   // Check every minute
-  setInterval(checkTime, 5000);
+  setInterval(checkTime, 60000);
 
   // Continue to the next middleware
 };
