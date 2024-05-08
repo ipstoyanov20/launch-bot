@@ -4,15 +4,14 @@ config();
 
 const scrapeLogic = async (res) => {
   const browser = await puppeteer.launch({
-    executablePath:
-		process.env.NODE_ENV === "production"
-    ? process.env.PUPPETEER_EXECUTABLE_PATH
-    : puppeteer.executablePath(),		
-    headless: false,
+		executablePath:
+			process.env.NODE_ENV === "production"
+				? process.env.PUPPETEER_EXECUTABLE_PATH
+				: puppeteer.executablePath(),
+		headless: false,
 		defaultViewport: null,
-		args: [
-			"--no-sandbox",
-    ],	});
+		args: ["--no-sandbox", "--disable-dev-shm-usage"],
+	});
     try {
 			const page = await browser.newPage();
 
