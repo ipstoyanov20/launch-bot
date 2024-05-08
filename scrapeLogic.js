@@ -70,11 +70,13 @@ const scrapeLogic = async (res) => {
 		const reserve = await page.$("input.btn.btn-primary");
 		await reserve.click();
   }
-  } catch (e) {
-    console.error(e);
-    res.send(`Something went wrong while running Puppeteer: ${e}`);
-  } finally {
-    await browser.close();
+  res.send(`Here we are:`);
+} catch (e) {
+  console.error(e);
+  res.send(`Something went wrong while running Puppeteer: ${e}`);
+} finally {
+  await browser.close();
+  res.send(`Closed:`);
   }
 })();
 }
