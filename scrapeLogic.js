@@ -7,7 +7,8 @@ const scrapeLogic = async (res) => {
     executablePath:
 		process.env.NODE_ENV === "production"
     ? process.env.PUPPETEER_EXECUTABLE_PATH
-    : puppeteer.executablePath(),		headless: false,
+    : puppeteer.executablePath(),		
+    headless: false,
 		defaultViewport: null,
 		args: [
       "--disable-setuid-sandbox",
@@ -71,7 +72,6 @@ const scrapeLogic = async (res) => {
 		const reserve = await page.$("input.btn.btn-primary");
 		await reserve.click();
   }
-    res.send(logStatement);
   } catch (e) {
     console.error(e);
     res.send(`Something went wrong while running Puppeteer: ${e}`);
