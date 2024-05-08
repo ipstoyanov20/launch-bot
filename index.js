@@ -41,7 +41,7 @@ const redirectIfWednesday1505 = (req, res, next) => {
 };
 
 // Apply the middleware to all routes
-app.use(redirectIfWednesday1505);
+// app.use(redirectIfWednesday1505);
 
 
 

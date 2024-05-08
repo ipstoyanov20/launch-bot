@@ -6,9 +6,9 @@ const scrapeLogic = async (res) => {
   const browser = await puppeteer.launch({
 		executablePath:
 			process.env.NODE_ENV === "production"
-				? process.env.PUPPETEER_EXECUTABLE_PATH
-				: puppeteer.executablePath(),
-		headless: false,
+      ? process.env.PUPPETEER_EXECUTABLE_PATH
+      : puppeteer.executablePath(),
+      headless: process.env.NODE_ENV === "production" ? true : false,
 		defaultViewport: null,
 		args: ["--no-sandbox", "--disable-dev-shm-usage"],
 	});
@@ -66,6 +66,7 @@ const scrapeLogic = async (res) => {
 				const reserve = await page.$("input.btn.btn-primary");
 				await reserve.click();
 			}
+			await browser.close();
 			res.send(`Here we are:`);
 		} catch (e) {
 			console.error(e);
