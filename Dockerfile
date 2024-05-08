@@ -1,11 +1,6 @@
 # Use an image that includes a VNC server and a desktop environment
 FROM dorowu/ubuntu-desktop-lxde-vnc
 
-# Install Node.js and npm
-RUN apt-get update && apt-get install -y nodejs npm
-
-# Install Puppeteer
-RUN npm install puppeteer
 
 # Set environment variables for Puppeteer
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
