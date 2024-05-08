@@ -25,6 +25,7 @@ const scrapeLogic = async (res) => {
     await page.goto("https://menu.codingburgas.bg", {
       waitUntil: "networkidle2",
     });
+    await new Promise((resolve) => setTimeout(resolve, 5000));
 
     const Office = await page.waitForSelector("button.btn.btn-danger");
     await Office.click();
